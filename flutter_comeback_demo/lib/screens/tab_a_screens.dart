@@ -9,7 +9,11 @@ class TabA_RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tab A: Title Page")),
+      appBar: AppBar(
+        title: const Text("Tab A: Title Page"),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {

@@ -22,6 +22,10 @@ class _RootTabScreenState extends State<RootTabScreen> {
     return Scaffold(
       // 使用 IndexedStack 保持 Tab 切换时的页面状态
       body: IndexedStack(index: _currentIndex, children: _pages),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),

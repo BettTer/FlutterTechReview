@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
 import '../models/post.dart';
+import '../shared/shared_library.dart';
 
 // 定义一个 StateNotifier (业务逻辑核心)
 class PostListNotifier extends Notifier<List<Post>> {
@@ -12,7 +13,7 @@ class PostListNotifier extends Notifier<List<Post>> {
   // Action: 发送网络请求并更新状态
   Future<bool> fetchAndSaveData() async {
     try {
-      print("🚀 [Provider] 开始请求 API...");
+      Log.i("开始请求 API...");
       final response = await Dio().get(
         'https://jsonplaceholder.typicode.com/posts',
       );
@@ -27,12 +28,12 @@ class PostListNotifier extends Notifier<List<Post>> {
         // 更新状态 (Immutable update)
         state = posts;
 
-        print("✅ [Provider] 数据已保存到内存: ${state.length} 条");
+        Log.i("[Provider] 数据已保存到内存: ${state.length} 条");
         return true;
       }
       return false;
     } catch (e) {
-      print("❌ [Provider] 请求失败: $e");
+      Log.e("[Provider] 请求失败: $e");
       return false;
     }
   }
