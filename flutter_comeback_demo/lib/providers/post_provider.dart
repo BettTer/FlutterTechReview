@@ -20,13 +20,14 @@ class PostListNotifier extends Notifier<List<Post>> {
 
       if (response.statusCode == 200) {
         final List<dynamic> rawList = response.data;
-        final List<Post> posts = rawList
+        final List<Post> newPosts = rawList
             .take(20)
             .map((e) => Post.fromJson(e))
             .toList();
 
         // 更新状态 (Immutable update)
-        state = posts;
+        // state = posts;
+        state = [...state, ...newPosts];
 
         Log.i("[Provider] 数据已保存到内存: ${state.length} 条");
         return true;
